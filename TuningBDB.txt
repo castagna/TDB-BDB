@@ -1,0 +1,135 @@
+JVM tuning matters:
+## 32 bit - modified from V.
+JVM_SIZE="-Xms1400M -Xmx1400M -server"
+JVM_SIZE_NEW="-XX:NewSize=100m -XX:MaxNewSize=100m"
+JVM_GC_TYPE="-XX:+UseConcMarkSweepGC -XX:+UseParNewGC"
+
+Important je.properties values (and their defaults - not recommended values)
+je.sharedCache=false
+je.maxMemory=0
+je.maxMemoryPercent=60
+je.checkpointer.bytesInterval=20000000
+je.checkpointer.wakeupInterval=0
+
+---------------
+
+V setup:
+
+bdb.cache.size  	200MB (make it bigger!!!)
+  	The BDB cache that is shared by all BDB tables. Bigger is better.
+bdb.write.transactions 	false
+ 	Should transactions be immediately written to disk?
+bdb.flush.transactions 	false
+ 	When the transaction has been written to disk should we force the disk to flush the OS cache. This is a fairly expensive operation.
+bdb.data.directory 	${data.directory}/bdb
+ 	The directory where the BDB environment is located
+bdb.max.logfile.size 	1GB
+ 	The size of an individual log file
+bdb.btree.fanout 	512
+ 	The fanout size for the btree. Bigger fanout more effienciently supports larger btrees.
+bdb.checkpoint.interval.bytes 	20 * 1024 * 1024
+ 	How often (in bytes) should we checkpoint the transaction log? Checkpoints make startup and shutdown faster.
+bdb.checkpoint.interval.ms 	30000
+ 	How often in ms should we checkpoint the transaction log
+
+-----------
+All (3.3.87)
+java.util.logging.ConsoleHandler.on=false
+java.util.logging.DbLogHandler.on=true
+java.util.logging.FileHandler.count=10
+java.util.logging.FileHandler.limit=10000000
+java.util.logging.FileHandler.on=false
+java.util.logging.level=INFO
+java.util.logging.level.cleaner=FINE
+java.util.logging.level.evictor=FINE
+java.util.logging.level.lockMgr=FINE
+java.util.logging.level.recovery=FINE
+je.adler32.chunkSize=0
+je.checkpointer.bytesInterval=20000000
+je.checkpointer.deadlockRetry=3
+je.checkpointer.highPriority=false
+je.checkpointer.wakeupInterval=0
+je.cleaner.bytesInterval=0
+je.cleaner.cluster=false
+je.cleaner.clusterAll=false
+je.cleaner.deadlockRetry=3
+je.cleaner.detailMaxMemoryPercentage=2
+je.cleaner.expunge=true
+je.cleaner.fetchObsoleteSize=false
+je.cleaner.forceCleanFiles=
+je.cleaner.lockTimeout=500000
+je.cleaner.lookAheadCacheSize=8192
+je.cleaner.maxBatchFiles=0
+je.cleaner.minAge=2
+je.cleaner.minFileUtilization=5
+je.cleaner.minFilesToDelete=5
+je.cleaner.minUtilization=50
+je.cleaner.readSize=0
+je.cleaner.restartRetries=5
+je.cleaner.retries=10
+je.cleaner.rmwFix=true
+je.cleaner.threads=1
+je.cleaner.trackDetail=true
+je.cleaner.upgradeToLogVersion=0
+je.compressor.deadlockRetry=3
+je.compressor.lockTimeout=500000
+je.compressor.purgeRoot=false
+je.compressor.wakeupInterval=5000000
+je.deferredWrite.temp=false
+je.env.backgroundReadLimit=0
+je.env.backgroundSleepInterval=1000
+je.env.backgroundWriteLimit=0
+je.env.checkLeaks=true
+je.env.dbEviction=true
+je.env.fairLatches=false
+je.env.forcedYield=false
+je.env.isLocking=true
+je.env.isReadOnly=false
+je.env.isTransactional=false
+je.env.lockoutTimeout=2147483647
+je.env.recovery=true
+je.env.recoveryForceCheckpoint=false
+je.env.runCheckpointer=true
+je.env.runCleaner=true
+je.env.runEvictor=false
+je.env.runINCompressor=true
+je.env.sharedLatches=true
+je.evictor.criticalPercentage=0
+je.evictor.deadlockRetry=3
+je.evictor.evictBytes=524288
+je.evictor.evictionBatchPercentage=10
+je.evictor.forcedYield=false
+je.evictor.lruOnly=true
+je.evictor.nodeScanPercentage=10
+je.evictor.nodesPerScan=10
+je.evictor.useMemoryFloor=95
+je.lock.nLockTables=1
+je.lock.timeout=500000
+je.log.bufferSize=1048576
+je.log.checksumRead=true
+je.log.chunkedNIO=0
+je.log.directNIO=false
+je.log.faultReadSize=2048
+je.log.fileCacheSize=100
+je.log.fileMax=10000000
+je.log.fsyncTimeout=500000
+je.log.iteratorMaxSize=16777216
+je.log.iteratorReadSize=8192
+je.log.memOnly=false
+je.log.numBuffers=3
+je.log.totalBufferBytes=0
+je.log.useNIO=false
+je.log.useODSYNC=false
+je.log.verifyChecksums=false
+je.maxMemory=0
+je.maxMemoryPercent=60
+je.nodeDupTreeMaxEntries=128
+je.nodeMaxEntries=128
+je.sharedCache=false
+je.tree.binDelta=25
+je.tree.maxDelta=10
+je.tree.minMemory=512000
+je.txn.deadlockStackTrace=false
+je.txn.dumpLocks=false
+je.txn.serializableIsolation=false
+je.txn.timeout=0
