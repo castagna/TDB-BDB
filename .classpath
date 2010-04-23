@@ -1,6 +1,6 @@
 <classpath>
-  <classpathentry kind="src" path="src/test/java" including="**/*.java"/>
   <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="src" path="src/test/java" including="**/*.java"/>
   <classpathentry kind="output" path="target/classes-eclipse"/>
   <classpathentry kind="var" path="M2_REPO/com/hp/hpl/jena/arq/2.8.3/arq-2.8.3.jar" sourcepath="M2_REPO/com/hp/hpl/jena/arq/2.8.3/arq-2.8.3-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4.jar" sourcepath="M2_REPO/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4-sources.jar"/>
