@@ -57,7 +57,7 @@ public class SetupBDB
         DatasetPrefixStorage prefixes = makePrefixes(config) ;
 
         // ---- Create the DatasetGraph object
-        DatasetGraphTDB dsg = new DatasetGraphTDB(tripleTable, quadTable, prefixes, SetupTDB.chooseOptimizer(location), location, null) ;
+        DatasetGraphTDB dsg = new DatasetGraphTDBBDB(tripleTable, quadTable, prefixes, SetupTDB.chooseOptimizer(location), location, null) ;
         return dsg ;
     }
 

@@ -6,37 +6,17 @@
 
 package com.talis.tdb.bdb;
 
-import org.junit.AfterClass ;
-import org.junit.Before ;
-import org.junit.Test ;
-import org.openjena.atlas.lib.FileOps ;
-import org.openjena.atlas.test.BaseTest ;
+import org.junit.runner.RunWith ;
+import org.junit.runners.Suite ;
 
-import com.hp.hpl.jena.tdb.store.DatasetGraphTDB ;
+@RunWith(Suite.class)
+@Suite.SuiteClasses( {
+    TestTDB_BDB.class
+} )
 
-public class TestTDB_BDB extends BaseTest
+public class TS_TDB_BDB
 {
-    static final String BDB_DIR = "testing/BDB" ;
-    
-    @Before public void setup() 
-    {
-        FileOps.ensureDir(BDB_DIR) ;
-        FileOps.clearDirectory(BDB_DIR) ;
-    }
-    
-    @AfterClass public static void cleanup()
-    {
-        FileOps.clearDirectory(BDB_DIR) ;
-    }
-    
-    @Test public void setup_01()
-    {
-        BDBinstance config = new BDBinstance(BDB_DIR) ;
-        DatasetGraphTDB dsg = SetupBDB.buildDataset(config) ;
-        dsg.close();
-        // TDB 0.8.5 : dsg.close loops.
-        //TDBMaker.releaseDataset(dsg) ;
-    }
+
 }
 
 /*

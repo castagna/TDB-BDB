@@ -6,36 +6,37 @@
 
 package com.talis.tdb.bdb;
 
-import org.junit.AfterClass ;
-import org.junit.Before ;
-import org.junit.Test ;
-import org.openjena.atlas.lib.FileOps ;
-import org.openjena.atlas.test.BaseTest ;
+import java.util.Properties ;
 
+import com.hp.hpl.jena.tdb.base.file.Location ;
+import com.hp.hpl.jena.tdb.migrate.DatasetPrefixStorage ;
+import com.hp.hpl.jena.tdb.solver.reorder.ReorderTransformation ;
 import com.hp.hpl.jena.tdb.store.DatasetGraphTDB ;
+import com.hp.hpl.jena.tdb.store.QuadTable ;
+import com.hp.hpl.jena.tdb.store.TripleTable ;
 
-public class TestTDB_BDB extends BaseTest
+public class DatasetGraphTDBBDB extends DatasetGraphTDB
 {
-    static final String BDB_DIR = "testing/BDB" ;
-    
-    @Before public void setup() 
+    public DatasetGraphTDBBDB(TripleTable tripleTable, QuadTable quadTable, DatasetPrefixStorage prefixes, 
+                           ReorderTransformation transform, Location location, Properties config)
     {
-        FileOps.ensureDir(BDB_DIR) ;
-        FileOps.clearDirectory(BDB_DIR) ;
+        super(tripleTable, quadTable, prefixes, transform, location, config) ;
     }
     
-    @AfterClass public static void cleanup()
+    @Override
+    public DatasetGraphTDB duplicate()
     {
-        FileOps.clearDirectory(BDB_DIR) ;
+        return new DatasetGraphTDBBDB(getTripleTable(), getQuadTable(), getPrefixes(), getTransform(), getLocation(), getConfig()) ;
     }
     
-    @Test public void setup_01()
+    private boolean closed = false ; 
+    @Override
+    public void _close()
     {
-        BDBinstance config = new BDBinstance(BDB_DIR) ;
-        DatasetGraphTDB dsg = SetupBDB.buildDataset(config) ;
-        dsg.close();
-        // TDB 0.8.5 : dsg.close loops.
-        //TDBMaker.releaseDataset(dsg) ;
+        // Workaround for a bug in TDB 0.8.5.  Remove TDB 0.8.6.
+        if ( closed ) return ;
+        closed = true ;
+        super._close() ;
     }
 }
 
