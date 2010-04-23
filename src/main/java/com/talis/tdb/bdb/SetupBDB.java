@@ -8,17 +8,17 @@ package com.talis.tdb.bdb ;
 
 import org.slf4j.Logger ;
 import org.slf4j.LoggerFactory ;
-import atlas.lib.ColumnMap ;
-import atlas.lib.StrUtils ;
+import org.openjena.atlas.lib.ColumnMap ;
+import org.openjena.atlas.lib.StrUtils ;
 
 import com.hp.hpl.jena.tdb.TDBException ;
 import com.hp.hpl.jena.tdb.base.file.Location ;
 import com.hp.hpl.jena.tdb.base.record.RecordFactory ;
-import com.hp.hpl.jena.tdb.graph.DatasetPrefixStorage ;
 import com.hp.hpl.jena.tdb.index.Index ;
 import com.hp.hpl.jena.tdb.index.RangeIndex ;
 import com.hp.hpl.jena.tdb.index.TupleIndex ;
 import com.hp.hpl.jena.tdb.index.TupleIndexRecord ;
+import com.hp.hpl.jena.tdb.migrate.DatasetPrefixStorage ;
 import com.hp.hpl.jena.tdb.nodetable.NodeTable ;
 import com.hp.hpl.jena.tdb.nodetable.NodeTableCache ;
 import com.hp.hpl.jena.tdb.nodetable.NodeTableInline ;
@@ -35,6 +35,7 @@ import com.hp.hpl.jena.tdb.sys.SystemTDB ;
 
 public class SetupBDB
 {
+    static { InitBDB.init() ; }
     private static Logger log = LoggerFactory.getLogger(SetupBDB.class) ;
     
     public static DatasetGraphTDB buildDataset(BDBinstance config)

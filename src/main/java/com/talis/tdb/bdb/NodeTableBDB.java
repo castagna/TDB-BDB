@@ -8,12 +8,12 @@ package com.talis.tdb.bdb;
 
 import java.util.Iterator ;
 
-import atlas.iterator.Iter ;
-import atlas.iterator.IteratorInteger ;
-import atlas.iterator.Transform ;
-import atlas.lib.Bytes ;
-import atlas.lib.Pair ;
-import atlas.lib.StrUtils ;
+import org.openjena.atlas.iterator.Iter ;
+import org.openjena.atlas.iterator.IteratorInteger ;
+import org.openjena.atlas.iterator.Transform ;
+import org.openjena.atlas.lib.Bytes ;
+import org.openjena.atlas.lib.Pair ;
+import org.openjena.atlas.lib.StrUtils ;
 
 import com.hp.hpl.jena.graph.Node ;
 import com.hp.hpl.jena.tdb.TDBException ;
@@ -175,9 +175,12 @@ public final class NodeTableBDB implements NodeTable
     }
 
     @Override
+    public void sync() { sync(true) ; }
+
+    
+    @Override
     public void sync(boolean force)
     {
-        
      // BDB sync is only for deferred write (in-memory) DBs.
         try {
             nodeToId.sync();

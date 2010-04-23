@@ -13,8 +13,12 @@ public class InitBDB
 {
     static { init() ; }
     // Take over the world
-    public static void init()
+    static boolean initialized = false ;
+    
+    public synchronized static void init()
     {
+        if ( initialized ) return ;
+        initialized = true ; 
         TDB.init();
         DatasetAssemblerTDB_BDB.init();
         TDBMaker.setImplFactory(new DatasetGraphMakerTDB_BDB()) ;

@@ -10,8 +10,8 @@ import java.io.File ;
 import java.io.IOException ;
 import java.util.Properties ;
 
-import atlas.lib.FileOps ;
-import atlas.lib.PropertyUtils ;
+import org.openjena.atlas.lib.FileOps ;
+import org.openjena.atlas.lib.PropertyUtils ;
 
 import com.hp.hpl.jena.tdb.TDBException ;
 import com.hp.hpl.jena.tdb.base.file.Location ;

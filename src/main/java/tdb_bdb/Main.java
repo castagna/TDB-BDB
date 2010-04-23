@@ -11,8 +11,8 @@ import java.util.Collections ;
 import java.util.List ;
 import java.util.Map ;
 
-import atlas.lib.FileOps ;
-import atlas.logging.Log ;
+import org.openjena.atlas.lib.FileOps ;
+import org.openjena.atlas.logging.Log ;
 
 import com.hp.hpl.jena.query.Dataset ;
 import com.hp.hpl.jena.query.Query ;

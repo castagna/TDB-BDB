@@ -10,9 +10,9 @@ import java.util.Iterator ;
 import java.util.NoSuchElementException ;
 
 
-import atlas.iterator.ClosableIterator ;
-import atlas.iterator.NullIterator ;
-import atlas.lib.Bytes ;
+import org.openjena.atlas.iterator.NullIterator ;
+import org.openjena.atlas.lib.Bytes ;
+import org.openjena.atlas.lib.Closeable ;
 
 import com.hp.hpl.jena.shared.JenaException ;
 import com.hp.hpl.jena.tdb.TDBException ;
@@ -154,7 +154,7 @@ public class RangeIndexBDB implements RangeIndex
         { throw new JenaException("RangeIndexBDB", dbe) ; }
     }
     
-    class IteratorRangeBDB implements Iterator<Record>, ClosableIterator
+    class IteratorRangeBDB implements Iterator<Record>, Closeable
     {
         private Cursor cursor ;
         private DatabaseEntry end ;
@@ -260,6 +260,9 @@ public class RangeIndexBDB implements RangeIndex
         throw new UnsupportedOperationException("maxKey") ;
     }
 
+    @Override
+    public void sync() { sync(true) ; }
+    
     @Override
     public void sync(boolean force)
     {
