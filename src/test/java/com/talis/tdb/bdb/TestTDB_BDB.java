@@ -34,8 +34,16 @@ public class TestTDB_BDB extends BaseTest
         BDBinstance config = new BDBinstance(BDB_DIR) ;
         DatasetGraphTDB dsg = SetupBDB.buildDataset(config) ;
         dsg.close();
-        // TDB 0.8.5 : dsg.close loops.
-        //TDBMaker.releaseDataset(dsg) ;
+        config.close();
+    }
+    
+    //TDBMaker.releaseDataset(dsg) ;
+    @Test public void setup_02()
+    {
+        BDBinstance config = new BDBinstance(BDB_DIR) ;
+        DatasetGraphTDB dsg = SetupBDB.buildDataset(config) ;
+        dsg.close();
+        config.close();
     }
 }
 
