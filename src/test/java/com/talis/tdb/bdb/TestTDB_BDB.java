@@ -12,6 +12,8 @@ import org.junit.Test ;
 import org.openjena.atlas.lib.FileOps ;
 import org.openjena.atlas.test.BaseTest ;
 
+import com.hp.hpl.jena.query.Dataset ;
+import com.hp.hpl.jena.sparql.core.assembler.AssemblerUtils ;
 import com.hp.hpl.jena.tdb.store.DatasetGraphTDB ;
 
 public class TestTDB_BDB extends BaseTest
@@ -45,6 +47,24 @@ public class TestTDB_BDB extends BaseTest
         dsg.close();
         config.close();
     }
+    
+    @Test public void assemble_1()
+    {
+        String assemblerFile = "testing/tdb_bdb.ttl" ;
+        Dataset ds = (Dataset)AssemblerUtils.build(assemblerFile, DatasetAssemblerTDB_BDB.tDatasetTDB_BDB) ;
+        assertTrue(ds.asDatasetGraph() instanceof DatasetGraphTDBBDB) ;
+        ds.close() ;
+    }
+
+    // and again
+    @Test public void assemble_2()
+    {
+        String assemblerFile = "testing/tdb_bdb.ttl" ;
+        Dataset ds = (Dataset)AssemblerUtils.build(assemblerFile, DatasetAssemblerTDB_BDB.tDatasetTDB_BDB) ;
+        assertTrue(ds.asDatasetGraph() instanceof DatasetGraphTDBBDB) ;
+        ds.close() ;
+    }
+
 }
 
 /*
