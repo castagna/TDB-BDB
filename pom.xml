@@ -36,44 +36,42 @@
 
   <properties>
     <this.root>${project.artifactId}-${project.version}</this.root>
-    <ver.jena>2.6.2</ver.jena>
-    <ver.arq>2.8.3</ver.arq>
-    <ver.tdb>0.8.5</ver.tdb>
+    <ver.jena>2.6.3</ver.jena>
+    <ver.arq>2.8.4</ver.arq>
+    <ver.tdb>0.8.6</ver.tdb>
   </properties>
 
   <dependencies>
-
-   <dependency>
+    
+    <dependency>
       <groupId>com.hp.hpl.jena</groupId>
       <artifactId>tdb</artifactId>
       <version>${ver.tdb}</version>
     </dependency>
-
+    
     <dependency>
       <groupId>com.hp.hpl.jena</groupId>
       <artifactId>tdb</artifactId>
-      <type>test-jar</type>
       <version>${ver.tdb}</version>
+      <type>test-jar</type>
       <scope>test</scope>
     </dependency>
-
+    
+    <!-- ARQ with sources
     <dependency>
       <groupId>com.hp.hpl.jena</groupId>
-      <artifactId>tdb</artifactId>
-      <classifier>sources</classifier>
-      <scope>optional</scope>
-      <version>${ver.tdb}</version>
+      <artifactId>arq</artifactId>
+      <version>${ver.arq}</version>
     </dependency>
-
+    
     <dependency>
       <groupId>com.hp.hpl.jena</groupId>
-      <artifactId>tdb</artifactId>
-      <classifier>test-sources</classifier>
-      <scope>optional</scope>
+      <artifactId>arq</artifactId>
+      <version>${ver.arq}</version>
       <type>test-jar</type>
-      <version>${ver.tdb}</version>
-    </dependency> 
-
+      <scope>test</scope>
+    </dependency>
+    -->
     <dependency>
       <groupId>com.sleepycat</groupId>
       <artifactId>je</artifactId>
