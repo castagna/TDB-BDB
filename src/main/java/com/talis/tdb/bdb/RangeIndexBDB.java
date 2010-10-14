@@ -15,6 +15,7 @@ import org.openjena.atlas.lib.Bytes ;
 import org.openjena.atlas.lib.Closeable ;
 
 import com.hp.hpl.jena.shared.JenaException ;
+import com.hp.hpl.jena.sparql.util.Utils;
 import com.hp.hpl.jena.tdb.TDBException ;
 import com.hp.hpl.jena.tdb.base.record.Record ;
 import com.hp.hpl.jena.tdb.base.record.RecordFactory ;
@@ -325,6 +326,11 @@ public class RangeIndexBDB implements RangeIndex
         }
         return recordFactory.create(k, v) ;
     }
+
+	@Override
+	public void clear() {
+	    throw new UnsupportedOperationException("RangeIndex("+Utils.classShortName(this.getClass())+").clear") ; 
+	}
 }
 
 /*

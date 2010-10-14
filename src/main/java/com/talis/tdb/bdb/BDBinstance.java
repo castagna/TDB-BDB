@@ -93,7 +93,6 @@ public class BDBinstance
     public Database openDatabase(String name)
     {
         Transaction txn = null ;
-        Database db ;
         try { return getDbEnv().openDatabase(txn, name, getDbConfig()) ; }
         catch (DatabaseException ex) { throw new TDBException(ex) ; }
     }

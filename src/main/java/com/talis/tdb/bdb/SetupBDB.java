@@ -18,7 +18,7 @@ import com.hp.hpl.jena.tdb.index.Index ;
 import com.hp.hpl.jena.tdb.index.RangeIndex ;
 import com.hp.hpl.jena.tdb.index.TupleIndex ;
 import com.hp.hpl.jena.tdb.index.TupleIndexRecord ;
-import com.hp.hpl.jena.tdb.migrate.DatasetPrefixStorage ;
+import com.hp.hpl.jena.sparql.core.DatasetPrefixStorage ;
 import com.hp.hpl.jena.tdb.nodetable.NodeTable ;
 import com.hp.hpl.jena.tdb.nodetable.NodeTableCache ;
 import com.hp.hpl.jena.tdb.nodetable.NodeTableInline ;
@@ -64,7 +64,7 @@ public class SetupBDB
     public static TripleTable makeTripleTable(BDBinstance config, NodeTable nodeTable, 
                                               String dftPrimary, String[] dftIndexes)
     {
-        log.debug("Triple table: "+dftPrimary+" :: "+StrUtils.join(",", dftIndexes)) ;
+        log.debug("Triple table: "+dftPrimary+" :: "+StrUtils.strjoin(",", dftIndexes)) ;
         TupleIndex tripleIndexes[] = makeTupleIndexes(config, dftPrimary, dftIndexes) ;
         if ( tripleIndexes.length != dftIndexes.length )
             SetupBDB.error(log, "Wrong number of triple table tuples indexes: "+tripleIndexes.length) ;
@@ -74,7 +74,7 @@ public class SetupBDB
     
     public static QuadTable makeQuadTable(BDBinstance config, NodeTable nodeTable, String dftPrimary, String[] dftIndexes)
     {
-        log.debug("Quad table: "+dftPrimary+" :: "+StrUtils.join(",", dftIndexes)) ;
+        log.debug("Quad table: "+dftPrimary+" :: "+StrUtils.strjoin(",", dftIndexes)) ;
         
         TupleIndex quadIndexes[] = makeTupleIndexes(config, dftPrimary, dftIndexes) ;
         if ( quadIndexes.length != dftIndexes.length )

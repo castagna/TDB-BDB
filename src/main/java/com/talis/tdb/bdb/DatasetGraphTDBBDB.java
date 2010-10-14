@@ -9,7 +9,7 @@ package com.talis.tdb.bdb;
 import java.util.Properties ;
 
 import com.hp.hpl.jena.tdb.base.file.Location ;
-import com.hp.hpl.jena.tdb.migrate.DatasetPrefixStorage ;
+import com.hp.hpl.jena.sparql.core.DatasetPrefixStorage ;
 import com.hp.hpl.jena.tdb.solver.reorder.ReorderTransformation ;
 import com.hp.hpl.jena.tdb.store.DatasetGraphTDB ;
 import com.hp.hpl.jena.tdb.store.QuadTable ;

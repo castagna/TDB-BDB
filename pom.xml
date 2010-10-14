@@ -37,8 +37,9 @@
   <properties>
     <this.root>${project.artifactId}-${project.version}</this.root>
     <ver.jena>2.6.3</ver.jena>
-    <ver.arq>2.8.4</ver.arq>
-    <ver.tdb>0.8.6</ver.tdb>
+    <ver.arq>2.8.5</ver.arq>
+    <ver.tdb>0.8.7</ver.tdb>
+    <ver.bdb>4.0.103</ver.bdb>
   </properties>
 
   <dependencies>
@@ -57,7 +58,7 @@
       <scope>test</scope>
     </dependency>
     
-    <!-- ARQ with sources
+    <!-- ARQ with sources -->
     <dependency>
       <groupId>com.hp.hpl.jena</groupId>
       <artifactId>arq</artifactId>
@@ -71,24 +72,24 @@
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
-    -->
+
     <dependency>
       <groupId>com.sleepycat</groupId>
       <artifactId>je</artifactId>
-      <version>4.0.92</version>
+      <version>${ver.bdb}</version>
     </dependency>
 
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.8.1</version>
+      <version>4.8.2</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.5.8</version>
+      <version>1.6.1</version>
     </dependency>
 
     <!-- Choose your logging provider 
@@ -101,32 +102,7 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <optional>true</optional>
-      <version>1.5.8</version>
-    </dependency>
-
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.14</version>
-      <optional>true</optional>
-      <exclusions>
-        <exclusion>
-          <groupId>javax.jms</groupId>
-          <artifactId>jms</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.sun.jdmk</groupId>
-          <artifactId>jmxtools</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.sun.jmx</groupId>
-          <artifactId>jmxri</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>javax.mail</groupId>
-          <artifactId>mail</artifactId>
-        </exclusion>
-      </exclusions> 
+      <version>1.6.1</version>
     </dependency>
 
   </dependencies>
