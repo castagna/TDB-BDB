@@ -4,7 +4,7 @@
  * [See end of file]
  */
 
-package tdb_bdb;
+package tdbbdb;
 
 import java.util.ArrayList ;
 import java.util.Collections ;

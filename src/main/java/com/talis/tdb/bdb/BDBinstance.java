@@ -12,6 +12,8 @@ import java.util.Properties ;
 
 import org.openjena.atlas.lib.FileOps ;
 import org.openjena.atlas.lib.PropertyUtils ;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.tdb.TDBException ;
 import com.hp.hpl.jena.tdb.base.file.Location ;
@@ -24,6 +26,8 @@ public class BDBinstance
     private DatabaseConfig dbConfig = null ;
     private LockMode lockMode = LockMode.DEFAULT ;
     private CursorConfig cursorConfig = CursorConfig.DEFAULT ;
+    
+    private static Logger log = LoggerFactory.getLogger(BDBinstance.class) ;
     
     public static int BDB_cacheSizePercent = 75 ;
     
@@ -60,6 +64,7 @@ public class BDBinstance
                 {
                     Properties properties = PropertyUtils.loadFromFile(location.getPath(jeProperties)) ;
                     envConfig = new EnvironmentConfig(properties);
+                    log.info("Loaded configuration from " + jeProperties);
                 } catch (IOException ex)
                 { throw new TDBException(ex) ; }
             }
