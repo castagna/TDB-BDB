@@ -6,30 +6,29 @@
 
 package com.talis.tdb.bdb ;
 
-import org.slf4j.Logger ;
-import org.slf4j.LoggerFactory ;
-import org.openjena.atlas.lib.ColumnMap ;
-import org.openjena.atlas.lib.StrUtils ;
+import org.openjena.atlas.lib.ColumnMap;
+import org.openjena.atlas.lib.StrUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.hp.hpl.jena.tdb.TDBException ;
-import com.hp.hpl.jena.tdb.base.file.Location ;
-import com.hp.hpl.jena.tdb.base.record.RecordFactory ;
-import com.hp.hpl.jena.tdb.index.Index ;
-import com.hp.hpl.jena.tdb.index.RangeIndex ;
-import com.hp.hpl.jena.tdb.index.TupleIndex ;
-import com.hp.hpl.jena.tdb.index.TupleIndexRecord ;
-import com.hp.hpl.jena.sparql.core.DatasetPrefixStorage ;
-import com.hp.hpl.jena.tdb.nodetable.NodeTable ;
-import com.hp.hpl.jena.tdb.nodetable.NodeTableCache ;
-import com.hp.hpl.jena.tdb.nodetable.NodeTableInline ;
-import com.hp.hpl.jena.tdb.store.DatasetGraphTDB ;
-import com.hp.hpl.jena.tdb.store.DatasetPrefixesTDB ;
-import com.hp.hpl.jena.tdb.store.NodeId ;
-import com.hp.hpl.jena.tdb.store.QuadTable ;
-import com.hp.hpl.jena.tdb.store.TripleTable ;
-import com.hp.hpl.jena.tdb.sys.Names ;
-import com.hp.hpl.jena.tdb.sys.SetupTDB ;
-import com.hp.hpl.jena.tdb.sys.SystemTDB ;
+import com.hp.hpl.jena.sparql.core.DatasetPrefixStorage;
+import com.hp.hpl.jena.tdb.TDBException;
+import com.hp.hpl.jena.tdb.base.file.Location;
+import com.hp.hpl.jena.tdb.base.record.RecordFactory;
+import com.hp.hpl.jena.tdb.index.RangeIndex;
+import com.hp.hpl.jena.tdb.index.TupleIndex;
+import com.hp.hpl.jena.tdb.index.TupleIndexRecord;
+import com.hp.hpl.jena.tdb.nodetable.NodeTable;
+import com.hp.hpl.jena.tdb.nodetable.NodeTableCache;
+import com.hp.hpl.jena.tdb.nodetable.NodeTableInline;
+import com.hp.hpl.jena.tdb.store.DatasetGraphTDB;
+import com.hp.hpl.jena.tdb.store.DatasetPrefixesTDB;
+import com.hp.hpl.jena.tdb.store.NodeId;
+import com.hp.hpl.jena.tdb.store.QuadTable;
+import com.hp.hpl.jena.tdb.store.TripleTable;
+import com.hp.hpl.jena.tdb.sys.Names;
+import com.hp.hpl.jena.tdb.sys.SetupTDB;
+import com.hp.hpl.jena.tdb.sys.SystemTDB;
 
 /** Makes things: BDB-JE backed */
 
@@ -126,12 +125,6 @@ public class SetupBDB
         return tupleIndex ;
     }
     
-    private static Index makeIndex(BDBinstance config, String indexName, 
-                                   int dftKeyLength, int dftValueLength)
-    {
-        return makeRangeIndex(config, indexName, dftKeyLength, dftValueLength) ;
-    }
-    
     private static RangeIndex makeRangeIndex(BDBinstance config, String indexName, 
                                              int dftKeyLength, int dftValueLength)
     {
@@ -148,7 +141,12 @@ public class SetupBDB
                                           String indexNode2Id,
                                           String indexId2Node )
     {
-        return new NodeTableBDB(config, indexNode2Id, indexId2Node) ;
+    	if ( config.useHash() ) {
+    		log.info("Using hash codes...");
+            return new NodeTableHashBDB(config, indexNode2Id, indexId2Node) ;    	
+    	} else {
+            return new NodeTableBDB(config, indexNode2Id, indexId2Node) ;
+    	}
     }
 
     public static void error(Logger log, String msg)

@@ -26,6 +26,7 @@ public class BDBinstance
     private DatabaseConfig dbConfig = null ;
     private LockMode lockMode = LockMode.DEFAULT ;
     private CursorConfig cursorConfig = CursorConfig.DEFAULT ;
+    private boolean useHash = true;
     
     private static Logger log = LoggerFactory.getLogger(BDBinstance.class) ;
     
@@ -137,11 +138,15 @@ public class BDBinstance
     {
         return lockMode ;
     }
-
+    
     CursorConfig getCursorConfig()
     {
         return cursorConfig ;
     }
+
+	public boolean useHash() {
+		return useHash;
+	}
 }
 
 /*
